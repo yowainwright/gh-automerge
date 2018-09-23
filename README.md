@@ -6,30 +6,41 @@
 
 ----
 
-GH-Automerge is a cron bot. It is built node and can used by being installed with NPM. 
+GH-Automerge is a cron bot that uses [CircleCi](http://circleci.com/) to automatically merge pull requests that pass CI.
 
 ----
 
 **GH-Automerge automatically:**
 
-- Merges master into a pull request when it is out of date
-- Merges a pull request when it is up-to-date and is not blocked by checks
+- Merges the master into out-of-date pull request branches
+- Merges pull requests when they're up-to-date and pass CI
 
 ## Usage
 
-To enable automerge on a pull request, add a Github Label called `AUTOMERGE` to the pull request.
+<image alt="gh-automerge" src="https://user-images.githubusercontent.com/1074042/45923024-427eb100-be8f-11e8-8b18-2c676bb8a4ed.jpg" />
 
-![gh-automerge](https://user-images.githubusercontent.com/1074042/36138017-9db600c4-104c-11e8-862a-4f43bed4a02a.jpg)
+Once setup, enable automerge on a pull request, add a Github `AUTOMERGE` Label to the pull request
 
 ## Installation
 
-GH-Automerge could run this where ever. However, it is typically run as a cron job within CircleCI.
+GH-Automerge is built run as a cron job within CircleCi.
 
 **To install:**
+
 1. Create a repository
-1. Run `npm i --save-dev gh-automerge`
+1. Run `npm install --save-dev gh-automerge`
+
+## Setup
+
+Setting up GH-Automerge can be done in 4 steps.
 
 **Enabling GH-Automerge in CircleCI:**
-1. Copy the [`.circleci/config.yml` template](.circleci/template.config.yml) into a repository
-1. Enable CircleCI
-1. Add `GITHUB_TOKEN` and `GITHUB_ORG` env vars to your CircleCI config
+
+1. Copy relevant code from this example [`.circleci/config.yml` template](.circleci/template.config.yml) into a repository
+1. Enable CircleCI for the repository
+1. Add  `GITHUB_TOKEN` and *`GITHUB_ORG` env vars to your CircleCi config
+1. Add the Github label `AUTOMERGE` to your repository
+
+----
+
+- `GITHUB_ORG` can be a Github user name, also
